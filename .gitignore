@@ -31,3 +31,5 @@ npm-debug.log
 
 # custom
 .idea
+config.js
+questions.js
