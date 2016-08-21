@@ -4,6 +4,14 @@
         <title>Nvision - OlympicIQ</title>
     </head>
     <body>
-        <a href="/play">Play</a>
+        <a href="/play?game=new">Play new game</a><br>
+        <br>
+        <% for (var i=0; i<games.length; i++) { %>
+        <% if (games[i].questions.length == 10) {%>
+        <a href="/play?game=<%= i %>">View game</a> <span><%= games[i].score %></span>
+        <% } else { %>
+        <a href="/play?game=<%= i %>">Continue Game</a>
+        <% } %><br>
+        <% } %>
     </body>
 </html>

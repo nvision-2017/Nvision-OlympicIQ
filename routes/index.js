@@ -4,10 +4,6 @@ const auth = require("../auth");
 const ensureLoggedIn = require("connect-ensure-login");
 const User = require('../models/user');
 
-router.get('/', function(req, res) {
-    res.render('index');
-});
-
 router.get('/login', function (req, res) {
     res.render('login');
 });
@@ -21,18 +17,22 @@ router.get('/auth/facebook/callback', auth.authenticate('facebook', {
     res.redirect('/');
 });
 
-router.get('/profile', ensureLoggedIn.ensureLoggedIn(), function (req, res) {
-    res.send(req.user);
-});
-
 router.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
 });
 
+router.get('/', ensureLoggedIn.ensureLoggedIn(), function (req, res) {
+    var user = req.user;
+    res.render('index', {
+        games: user.games
+    });
+});
+
 router.get('/play', ensureLoggedIn.ensureLoggedIn(), function (req, res) {
     var user = req.user;
     if (req.query.game == "new") {
+        if (user.games.length > 4) return res.render('game', {error: "No more games can be played"});
         var user = req.user;
         var game = {};
         game.id = user.games.length;
@@ -79,7 +79,7 @@ router.post('/play', ensureLoggedIn.ensureLoggedIn(), function (req, res) {
             if (q == 10) {
                 return res.send({score: user.games[gameID].score});
             }
-            res.send({question: Questions[qno].question, options: Questions[qno].options, time: t}); // TODO
+            else res.send({question: Questions[qno].question, options: Questions[qno].options, time: t}); // TODO
         }
     });
 });
