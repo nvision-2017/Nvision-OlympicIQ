@@ -8,7 +8,7 @@ router.get('/login', function (req, res) {
     res.render('login');
 });
 
-router.get('/auth/facebook', auth.authenticate('facebook'));
+router.get('/auth/facebook', auth.authenticate('facebook', {scope: ['email', 'public_profile']}));
 
 router.get('/auth/facebook/callback', auth.authenticate('facebook', {
     successReturnToOrRedirect: '/',
