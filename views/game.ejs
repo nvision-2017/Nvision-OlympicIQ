@@ -30,14 +30,12 @@
 
             .jumbotron {
                 position: relative;
-                top: 50%;
-                transform: translateY(-50%);
                 background-color: white;
             }
 
             .option-btn {
                 line-height: 40px;
-                width: 25em;
+                width: 100%;
                 display:inline-block;
                 font-family:Arial, "Helvetica", sans-serif;
                 font-size:20px;
@@ -87,11 +85,16 @@
             }(document, 'script', 'facebook-jssdk'));
         </script>
 
+        <header>
+        <button class="btn btn-primary" onclick="logout()" style="float:right;margin:1em;">Logout</button>
+                <h1><a href="https://nvision.org.in"><img src="/images/nvision.png" width="220"></a>&emsp;<b>OLYMPIC IQ</b></h1>
+            </header>
+
         <div class="table">
             <div class="table-cell">
                 <div id="main" class="container">
                     <div class="card">
-                        <button class="start-btn" onclick="startGame()">Start Game</button>
+                        <button class="start-btn" onclick="startGame()">Start Quiz</button>
                     </div>
                     <svg class="svg-1" width="147px" height="148px" viewBox="0 0 147 148" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <defs>
@@ -158,15 +161,18 @@
                     </svg>
                 </div>
 
+                        <div class="col-md-12 game" style="display:none">
+                            <button style="float:right;z-index:1000" class="skip-btn btn btn-warning" onclick="getQuestion(4)"><b>Skip</b>&emsp;<span class="glyphicon glyphicon-hand-right"></span></button>
+                        </div>
                 <div id="game" class="container" style="height: 100%; display: none;">
-
-                    <div class="row text-center" style="height: 40%">
+                    
+                    <div class="row" style="height: 40%">
                         <div class="col-md-12 jumbotron">
                             <div id="qno"></div>
-                            <p id="question"></p>
+                            <p id="question" style="text-align:left"></p>
                         </div>
                     </div>
-                    <div class="row text-center" style="height: 60%">
+                    <div class="row" style="height: 60%">
                         <div class="col-md-12">
                             <button class="option-btn" id="optionA">Option A</button>
                         </div>
@@ -179,9 +185,6 @@
                         <div class="col-md-12">
                             <button class="option-btn" id="optionD">Option D</button>
                         </div>
-                        <div class="col-md-12">
-                            <button class="skip-btn" onclick="getQuestion(4)">Skip this question</button>
-                        </div>
                         <p id="timer"></p>
                     </div>
                 </div>
@@ -189,7 +192,8 @@
                 <div id="score" class="container" style="height: 100%; display: none;">
                     <div class="row text-center" style="height: 100%; position: relative;">
                         <div class="col-md-12" style="height: 100%;">
-                            <p style="font-size: 2em;">You answered <span id="scorec"></span>/8 questions.</p>
+                            <p style="font-size: 4em;color:#fff;">You answered <span id="scorec"></span>/8 questions.</p>
+                            <p><a href="/play" style="font-size: 5em;color:#fff;">Play again</a></p>
                         </div>
                     </div>
                 </div>
@@ -262,14 +266,20 @@
             var qno = 0;
             var time = 10;
 
+            function logout() {
+                window.open('/logout','_self');
+            }
+
             function score(sc) {
                 $("#game").hide();
+                $(".game").hide();
                 $("#score").show();
                 $("#scorec").html(sc);
             }
             function startGame() {
                 $("#main").hide();
                 $("#game").show();
+                $(".game").show();
                 var ti = window.setInterval(function () {
                     if (time > 0) {
                         time--;
@@ -288,11 +298,11 @@
                         console.log(data);
                         if (data.score != undefined) return score(data.score);
                         qno++;
-                        ques.html(qno+". "+data.question);
-                        opt0.html("A. "+data.options[0]);
-                        opt1.html("B. "+data.options[1]);
-                        opt2.html("C. "+data.options[2]);
-                        opt3.html("D. "+data.options[3]);
+                        ques.html("<b>"+qno+".</b> "+data.question);
+                        opt0.html("<b>A.</b> "+data.options[0]);
+                        opt1.html("<b>B.</b> "+data.options[1]);
+                        opt2.html("<b>C.</b> "+data.options[2]);
+                        opt3.html("<b>D.</b> "+data.options[3]);
                         time = 10-Math.round((Date.now()-data.time)/1000);
                     }
                 });
