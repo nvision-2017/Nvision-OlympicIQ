@@ -1,7 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300);
 body {
+		background: url("..//images/banner.jpg");
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
     background-color: #0F142A;
-    height: 100vh;
     overflow-x: hidden;
     text-align: center;
     font-family: "Yanone Kaffeesatz", sans-serif;
@@ -1058,7 +1061,7 @@ svg {
 
 /* Header */
 
-	body.landing #header {
+	body.landing #header,body.landing #header2 {
 		background-color: transparent;
 		left: 0;
 		position: absolute;
@@ -1071,7 +1074,7 @@ svg {
 		top: 0;
 	}
 
-	#header {
+	#header,#header2 {
 		background-color: #202222;
 		color: #ffffff;
 		cursor: default;
@@ -1081,10 +1084,9 @@ svg {
 		z-index: 10000;
 	}
 
-		#header h1 {
+		#header h1,#header2 h1 {
 			color: #ffffff;
 			height: inherit;
-			left: 2.5em;
 			line-height: inherit;
 			margin: 0;
 			padding: 0;
@@ -1092,7 +1094,14 @@ svg {
 			top: 0;
 		}
 
-			#header h1 a {
+		#header h1 {
+			left: 1.5em;
+		}
+		#header2 h1 {
+			right: 2.5em;
+		}
+
+			#header h1 a,#header2 h1 a {
 				font-size: 1.25em;
 			}
 
@@ -1162,10 +1171,6 @@ svg {
 /* Banner */
 
 	#banner {
-		background: url("..//images/banner.jpg");
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: cover;
 		color: #ffffff;
 		padding: 16em 0em 14em;
 		text-align: center;
