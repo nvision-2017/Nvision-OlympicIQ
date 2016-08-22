@@ -19,9 +19,9 @@
             html, body {
                 height:100%;
                 user-select: none;
-                -webkit-user-select: none; !* Chrome/Safari *!
-                -moz-user-select: none; !* Firefox *!
-                -ms-user-select: none; !* IE10+ *!
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
             }
 
             .container {
@@ -238,17 +238,14 @@
             </g>
         </svg>
 
-
-
-
-
         <script>
             $("#sharebtn").click(function () {
                 FB.ui({
                     method: 'share',
                     display: 'popup',
                     href: 'http://www.google.com/', // TODO Replace with the url of this page
-                    hashtag: '#nvisionOlympicIQ'
+                    hashtag: '#nvisionOlympicIQ',
+                    quote: 'Testing'
                 }, function(response){
 
                 });
