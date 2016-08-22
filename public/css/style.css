@@ -1,11 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300);
 body {
-		background: url("..//images/banner.jpg");
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: cover;
-    background-color: #0F142A;
-    overflow-x: hidden;
+
     text-align: center;
     font-family: "Yanone Kaffeesatz", sans-serif;
 }

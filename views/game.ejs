@@ -24,6 +24,14 @@
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <style>
+        body {
+            background: url("..//images/banner.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: #0F142A;
+            overflow-x: hidden;
+        }
             html, body {
                 height:100%;
                 user-select: none;
@@ -215,7 +223,9 @@
                 <div id="score" class="container" style="height: 100%;display:none">
                     <div class="row text-center" style="height: 100%; position: relative;">
                         <div class="col-md-12" style="height: 100%;">
-                            <p><span  style="font-size: 4em;color:#fff;">You answered <span id="scorec"></span>/8 questions.</span>
+                            <p>
+                            <span  style="font-size: 4em;color:#fff;">You answered <span id="scorec"></span>/8 questions.</span><br>
+                            <span  style="font-size: 1em;color:#fff;">Check out the <a href="https://www.facebook.com/Quiz-Club-IIT-Hyderabad-139658206244424/">Quiz Club, Literary Society</a></span>
                             <br>
                             <br>
                             <button class="btn" id="sharebtn" style="color:#fff;background-color:#3b5998">Share on fb</button>
