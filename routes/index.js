@@ -23,10 +23,7 @@ router.get('/logout', function(req, res) {
 });
 
 router.get('/', ensureLoggedIn.ensureLoggedIn(), function (req, res) {
-    var user = req.user;
-    res.render('index', {
-        games: user.games
-    });
+    res.redirect('/play');
 });
 
 router.get('/play', ensureLoggedIn.ensureLoggedIn(), function (req, res) {
@@ -53,11 +50,11 @@ router.post('/play', ensureLoggedIn.ensureLoggedIn(), function (req, res) {
     var gameID = Number(req.body.gameID);
     if ((!gameID && gameID != 0) && (gameID < 0 || gameID >= user.games.length )) return res.sendStatus(404);
     var answer = Number(req.body.answer);
-    var tl = (Math.abs(user.games[gameID].time-t) > 10000);
-    if (tl) {
+    var tl = (user.games[gameID].questions.length > 1) && (Math.abs(user.games[gameID].time-t) > 10000);
+    if (tl || answer == 5) {
         return res.send({score: user.games[gameID].score});
     }
-    if ((!answer && answer != 0) && (answer < 0 || answer > 3)) return res.sendStatus(404);
+    if ((!answer && answer != 0) && (answer < 0 || answer > 4)) return res.sendStatus(404);
     var q = user.games[gameID].questions.length;
     if (q != 0 && user.games[gameID].questions[q-1].response == undefined && !tl) {
         user.games[gameID].questions[q-1].response = answer;

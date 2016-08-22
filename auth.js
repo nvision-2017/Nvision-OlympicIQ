@@ -43,7 +43,6 @@ passport.use(new Strategy({
 }));
 
 passport.serializeUser(function (user, cb) {
-    console.log(user);
     return cb(null, user.id);
 });
 

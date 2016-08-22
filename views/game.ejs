@@ -2,18 +2,26 @@
 <html>
     <head>
         <title>Nvision</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta property="og:url" content="" />
+        <meta property="og:type" content="game.achievement" />
+        <meta property="og:title" content="" />
+        <meta property="og:description" content="" />
+        <meta property="og:site_name" content="" />
+        <meta property="og:image" content="" />
+        <meta property="game:points" content="1000" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
+        <link rel="stylesheet" href="/css/style.css">
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <style>
             html, body {
                 height:100%;
                 user-select: none;
-                -webkit-user-select: none; /* Chrome/Safari */
-                -moz-user-select: none; /* Firefox */
-                -ms-user-select: none; /* IE10+ */
-
+                -webkit-user-select: none; !* Chrome/Safari *!
+                -moz-user-select: none; !* Firefox *!
+                -ms-user-select: none; !* IE10+ *!
             }
 
             .container {
@@ -46,89 +54,265 @@
                 background-image: linear-gradient(bottom, rgb(14,137,182) 0%, rgb(22,179,236) 100%);
                 border-radius: 5px;
                 box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #07526e, 0px 10px 5px #999;
-                margin: 0.25em;
+                margin: 0.5em;
             }
 
             .option-btn:hover{
                 top:3px;
                 box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #07526e, 0px 5px 3px #999;
             }
+
+            .skip-btn {
+
+            }
+
         </style>
+    </head>
+    <body>
+        <script>
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : '309637142759274',
+                    xfbml      : true,
+                    version    : 'v2.7'
+                });
+            };
+
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+
+        <div class="table">
+            <div class="table-cell">
+                <div id="main" class="container">
+                    <div class="card">
+                        <button class="start-btn" onclick="startGame()">Start Game</button>
+                    </div>
+                    <svg class="svg-1" width="147px" height="148px" viewBox="0 0 147 148" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <defs>
+                            <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+                                <feOffset dx="0" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                                <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0.266666667   0 0 0 0 0.694117647   0 0 0 0 0.607843137  0 0 0 0.7 0" in="shadowBlurOuter1" type="matrix" result="shadowMatrixOuter1"></feColorMatrix>
+                                <feMerge>
+                                    <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                                    <feMergeNode in="SourceGraphic"></feMergeNode>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" filter="url(#filter-1)">
+                            <g id="Artboard-1" transform="translate(-146.000000, -3.000000)" fill="#44B19B">
+                                <g id="tr1" transform="translate(218.000000, 72.000000) scale(-1, -1) translate(-218.000000, -72.000000) translate(169.000000, 22.000000)">
+                                    <path d="M45.1796875,76.9648438 L0.58984375,100 L20,0 L45.1796875,76.9648438 Z" id="Triangle-1" fill-opacity="0.423318614"></path>
+                                    <path d="M97.1992188,79.2382812 L18.9960938,0 L40,62 L97.1992188,79.2382812 Z" id="Triangle-1"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                    <svg class="svg-2" width="150px" height="130px" viewBox="0 0 150 130" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <defs>
+                            <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+                                <feOffset dx="0" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                                <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0.729411765   0 0 0 0 0.247058824   0 0 0 0 0.341176471  0 0 0 0.543447124 0" in="shadowBlurOuter1" type="matrix" result="shadowMatrixOuter1"></feColorMatrix>
+                                <feMerge>
+                                    <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                                    <feMergeNode in="SourceGraphic"></feMergeNode>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" filter="url(#filter-1)">
+                            <g id="Artboard-1" transform="translate(-124.000000, -151.000000)" fill="#BA3F57">
+                                <g id="tr2" transform="translate(202.000000, 211.000000) scale(1, -1) translate(-202.000000, -211.000000) translate(151.000000, 171.000000)">
+                                    <polygon id="Triangle-1" fill-opacity="0.831946332" points="23 0 44 62 0 62 "></polygon>
+                                    <path d="M101.199219,79.2382812 L22.9960938,0 L44,62 L101.199219,79.2382812 Z" id="Triangle-1" fill-opacity="0.554376132"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                    <svg class="svg-3" width="154px" height="139px" viewBox="0 0 154 139" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <defs>
+                            <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+                                <feOffset dx="0" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                                <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0.568627451   0 0 0 0 0.631372549   0 0 0 0 0.968627451  0 0 0 0.7 0" in="shadowBlurOuter1" type="matrix" result="shadowMatrixOuter1"></feColorMatrix>
+                                <feMerge>
+                                    <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                                    <feMergeNode in="SourceGraphic"></feMergeNode>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" filter="url(#filter-1)">
+                            <g id="Artboard-1" transform="translate(-3.000000, -50.000000)" fill="#91A1F7">
+                                <g id="tr3" transform="translate(30.000000, 72.000000)">
+                                    <polygon id="Triangle-1" points="22 20 44 82 0 82 "></polygon>
+                                    <path d="M103,0 L21.4453125,19.0859375 L44,82 L103,0 Z" id="Triangle-1" fill-opacity="0.62720788"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+
+                <div id="game" class="container" style="height: 100%; display: none;">
+
+                    <div class="row text-center" style="height: 40%">
+                        <div class="col-md-12 jumbotron">
+                            <div id="qno"></div>
+                            <p id="question"></p>
+                        </div>
+                    </div>
+                    <div class="row text-center" style="height: 60%">
+                        <div class="col-md-12">
+                            <button class="option-btn" id="optionA">Option A</button>
+                        </div>
+                        <div class="col-md-12">
+                            <button class="option-btn" id="optionB">Option B</button>
+                        </div>
+                        <div class="col-md-12">
+                            <button class="option-btn" id="optionC">Option C</button>
+                        </div>
+                        <div class="col-md-12">
+                            <button class="option-btn" id="optionD">Option D</button>
+                        </div>
+                        <div class="col-md-12">
+                            <button class="skip-btn" onclick="getQuestion(4)">Skip this question</button>
+                        </div>
+                        <p id="timer"></p>
+                    </div>
+                </div>
+
+                <div id="score" class="container" style="height: 100%; display: none;">
+                    <div class="row text-center" style="height: 100%; position: relative;">
+                        <div class="col-md-12" style="height: 100%;">
+                            <p style="font-size: 2em;">You answered <span id="scorec"></span>/8 questions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <svg class="svg-3 svg-b" width="154px" height="139px" viewBox="0 0 154 139" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <defs>
+                <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+                    <feOffset dx="0" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                    <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                    <feColorMatrix values="0 0 0 0 0.568627451   0 0 0 0 0.631372549   0 0 0 0 0.968627451  0 0 0 0.7 0" in="shadowBlurOuter1" type="matrix" result="shadowMatrixOuter1"></feColorMatrix>
+                    <feMerge>
+                        <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                    </feMerge>
+                </filter>
+            </defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" filter="url(#filter-1)">
+                <g id="Artboard-1" transform="translate(-3.000000, -50.000000)" fill="#91A1F7">
+                    <g id="tr3" transform="translate(30.000000, 72.000000)">
+                        <polygon id="Triangle-1" points="22 20 44 82 0 82 "></polygon>
+                        <path d="M103,0 L21.4453125,19.0859375 L44,82 L103,0 Z" id="Triangle-1" fill-opacity="0.62720788"></path>
+                    </g>
+                </g>
+            </g>
+        </svg>
+        <svg class="svg-2 svg-b" width="150px" height="130px" viewBox="0 0 150 130" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <defs>
+                <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+                    <feOffset dx="0" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                    <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                    <feColorMatrix values="0 0 0 0 0.729411765   0 0 0 0 0.247058824   0 0 0 0 0.341176471  0 0 0 0.543447124 0" in="shadowBlurOuter1" type="matrix" result="shadowMatrixOuter1"></feColorMatrix>
+                    <feMerge>
+                        <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                    </feMerge>
+                </filter>
+            </defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" filter="url(#filter-1)">
+                <g id="Artboard-1" transform="translate(-124.000000, -151.000000)" fill="#BA3F57">
+                    <g id="tr2" transform="translate(202.000000, 211.000000) scale(1, -1) translate(-202.000000, -211.000000) translate(151.000000, 171.000000)">
+                        <polygon id="Triangle-1" fill-opacity="0.831946332" points="23 0 44 62 0 62 "></polygon>
+                        <path d="M101.199219,79.2382812 L22.9960938,0 L44,62 L101.199219,79.2382812 Z" id="Triangle-1" fill-opacity="0.554376132"></path>
+                    </g>
+                </g>
+            </g>
+        </svg>
+
+
+
+
+
+        <script>
+            $("#sharebtn").click(function () {
+                FB.ui({
+                    method: 'share',
+                    display: 'popup',
+                    href: 'http://www.google.com/', // TODO Replace with the url of this page
+                    hashtag: '#nvisionOlympicIQ'
+                }, function(response){
+
+                });
+            });
+        </script>
         <script>
             <% if (locals.error){%>alert("<%= locals.error%>");<%} else {%>
-            $(document).ready(function () {
-                var gameID = <%= locals.game.id %>+0;
-                var ques = $("#question");
-                var opt0 = $("#optionA");
-                var opt1 = $("#optionB");
-                var opt2 = $("#optionC");
-                var opt3 = $("#optionD");
-                var qno = 0;
-                var time = 0;
-                window.setInterval(function () {
+            var gameID = <%= locals.game.id %>+0;
+            var ques = $("#question");
+            var opt0 = $("#optionA");
+            var opt1 = $("#optionB");
+            var opt2 = $("#optionC");
+            var opt3 = $("#optionD");
+            var qno = 0;
+            var time = 10;
+
+            function score(sc) {
+                $("#game").hide();
+                $("#score").show();
+                $("#scorec").html(sc);
+            }
+            function startGame() {
+                $("#main").hide();
+                $("#game").show();
+                var ti = window.setInterval(function () {
                     if (time > 0) {
                         time--;
                         $("#timer").html(time);
                     }
+                    else {
+                        getQuestion(5);
+                        clearInterval(ti);
+                    }
                 }, 1000);
-                function getQuestion(answer) {
-                    $.post('/play', {gameID: gameID, answer: answer}, function (data, status, xhr) {
-                        if (status == "success") {
-                            console.log(data);
-                            if (data.score != undefined) return alert(data.score);
-                            qno++;
-                            ques.html(qno+". "+data.question);
-                            opt0.html("A. "+data.options[0]);
-                            opt1.html("B. "+data.options[1]);
-                            opt2.html("C. "+data.options[2]);
-                            opt3.html("D. "+data.options[3]);
-                            time = 10-Math.round((Date.now()-data.time)/1000);
-                        }
-                    });
-
-                }
-                opt0.click(function () {
-                    getQuestion(0);
+                getQuestion();
+            }
+            function getQuestion(answer) {
+                $.post('/play', {gameID: gameID, answer: answer}, function (data, status, xhr) {
+                    if (status == "success") {
+                        console.log(data);
+                        if (data.score != undefined) return score(data.score);
+                        qno++;
+                        ques.html(qno+". "+data.question);
+                        opt0.html("A. "+data.options[0]);
+                        opt1.html("B. "+data.options[1]);
+                        opt2.html("C. "+data.options[2]);
+                        opt3.html("D. "+data.options[3]);
+                        time = 10-Math.round((Date.now()-data.time)/1000);
+                    }
                 });
-                opt1.click(function () {
-                    getQuestion(1);
-                });
-                opt2.click(function () {
-                    getQuestion(2);
-                });
-                opt3.click(function () {
-                    getQuestion(3);
-                });
+            }
+            opt0.click(function () {
+                getQuestion(0);
+            });
+            opt1.click(function () {
+                getQuestion(1);
+            });
+            opt2.click(function () {
+                getQuestion(2);
+            });
+            opt3.click(function () {
+                getQuestion(3);
             });
             <%}%>
         </script>
-    </head>
-    <body>
-        <div class="container" style="height: 100%">
-            <div class="row text-center" style="height: 40%">
-                <div class="col-md-12 jumbotron">
-                    <div id="qno"></div>
-                    <p id="question">
-                        Question | Question |Question |Question |Question |Question |Question |Question |Question |Question
-                    </p>
-                </div>
-            </div>
-            <div class="row text-center" style="height: 60%">
-                <div class="col-md-12">
-                    <button class="option-btn" id="optionA">Option A</button>
-                </div>
-                <div class="col-md-12">
-                    <button class="option-btn" id="optionB">Option B</button>
-                </div>
-                <div class="col-md-12">
-                    <button class="option-btn" id="optionC">Option C</button>
-                </div>
-                <div class="col-md-12">
-                    <button class="option-btn" id="optionD">Option D</button>
-                </div>
-                <p id="timer"></p>
-            </div>
-
-        </div>
     </body>
 </html>
