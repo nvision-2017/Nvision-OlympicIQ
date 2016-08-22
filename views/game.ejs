@@ -111,7 +111,7 @@
                     <div class="card">
                         <div style="color:#fff;font-size:20px">
                             Rules:<br>
-                            1. You have 150 seconds to answer 8 questions <br>
+                            1. You have 120 seconds to answer 8 questions <br>
                             2. Once clicked on 'skip', you cant go back to that question<br>
                             3. Refresh or Logout in the middle of the game will be considered as 'game over'
                         </div>
@@ -285,7 +285,7 @@
             });
         </script>
         <script>
-
+            <% if (locals.error){%>alert("<%= locals.error%>");<%} else {%>
             var gameID = <%= locals.game.id %>+0;
             var ques = $("#question");
             var opt0 = $("#optionA");
