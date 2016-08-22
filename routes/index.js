@@ -28,7 +28,7 @@ router.get('/', ensureLoggedIn.ensureLoggedIn(), function (req, res) {
 
 router.get('/play', ensureLoggedIn.ensureLoggedIn(), function (req, res) {
     var user = req.user;
-    if (user.games.length > 5) return res.render('game', {error: "No more games can be played"});
+    if (user.games.length > 5) return res.render('game', {error: "No more games can be played", name: req.user.displayName});
     var game = {};
     game.id = user.games.length;
     game.questions = [];
@@ -40,7 +40,7 @@ router.get('/play', ensureLoggedIn.ensureLoggedIn(), function (req, res) {
             console.log(err);
             return res.sendStatus(500);
         }
-        else res.render('game', {game: game,name: user.displayName});
+        else res.render('game', {game: game,name: req.user.displayName});
     });
 });
 

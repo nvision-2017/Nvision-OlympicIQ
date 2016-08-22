@@ -13,8 +13,8 @@
         <meta property="og:site_name" content="&eta;vision">
         <meta property="og:title" content="Olympic IQ | &eta;vision 2016">
         <meta property="og:type" content="techno-management_fest:nvision">
-        <meta property="og:image" content="/imges/logo.png">
-        <meta property="og:url" content="olympics.nvision.org.in">
+        <meta property="og:image" content="https://olympics.nvision.org.in/imges/logo.png">
+        <meta property="og:url" content="https://olympics.nvision.org.in">
         <meta property="og:description" content="Olympic Quiz organised by &eta;vision 2016 IITH">
         <meta property="game:points" content="1000" />
 
@@ -109,15 +109,16 @@
             <div class="table-cell">
                 <div id="main" class="container">
                     <div class="card">
+                        <% if (locals.error) {%>
+                        <p style="color:#fff;font-size:20px">You cannot play more than 5 times.</p>
+                        <% } else {%>
                         <div style="color:#fff;font-size:20px">
                             Rules:<br>
                             1. You have 120 seconds to answer 8 questions <br>
                             2. Once clicked on 'skip', you cant go back to that question<br>
                             3. Refresh or Logout in the middle of the game will be considered as 'game over'
                         </div>
-                        <% if (locals.error) {%>
-                        <p>You cannot play more than 5 times.</p>
-                        <% } else {%>
+
                         <button class="start-btn" onclick="startGame()">Start Quiz</button>
                         <% }%>
                     </div>
@@ -285,7 +286,7 @@
             });
         </script>
         <script>
-            <% if (locals.error){%>alert("<%= locals.error%>");<%} else {%>
+            <% if (locals.error){%>// alert("<%= locals.error%>");<%} else {%>
             var gameID = <%= locals.game.id %>+0;
             var ques = $("#question");
             var opt0 = $("#optionA");
