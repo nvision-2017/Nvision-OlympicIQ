@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300);
 body {
-
-    text-align: center;
+	background-color: #0F142A;
+	text-align: center;
     font-family: "Yanone Kaffeesatz", sans-serif;
 }
 
@@ -1166,6 +1166,10 @@ svg {
 /* Banner */
 
 	#banner {
+		background: url("/images/banner.jpg");
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
 		color: #ffffff;
 		padding: 16em 0em 14em;
 		text-align: center;
