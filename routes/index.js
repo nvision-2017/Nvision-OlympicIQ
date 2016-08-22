@@ -28,7 +28,7 @@ router.get('/', ensureLoggedIn.ensureLoggedIn(), function (req, res) {
 
 router.get('/play', ensureLoggedIn.ensureLoggedIn(), function (req, res) {
     var user = req.user;
-    // if (user.games.length > 4) return res.render('game', {error: "No more games can be played"});
+    if (user.games.length > 5) return res.render('game', {error: "No more games can be played"});
     var game = {};
     game.id = user.games.length;
     game.questions = [];

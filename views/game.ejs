@@ -111,11 +111,15 @@
                     <div class="card">
                         <div style="color:#fff;font-size:20px">
                             Rules:<br>
-                            1. You have 120 seconds to answer 8 questions <br>
+                            1. You have 150 seconds to answer 8 questions <br>
                             2. Once clicked on 'skip', you cant go back to that question<br>
                             3. Refresh or Logout in the middle of the game will be considered as 'game over'
                         </div>
+                        <% if (locals.error) {%>
+                        <p>You cannot play more than 5 times.</p>
+                        <% } else {%>
                         <button class="start-btn" onclick="startGame()">Start Quiz</button>
+                        <% }%>
                     </div>
                     <svg class="svg-1" width="147px" height="148px" viewBox="0 0 147 148" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <defs>
@@ -193,16 +197,16 @@
                     </div>
                     <div class="row" style="height: 60%">
                         <div class="col-md-12">
-                            <button class="option-btn" id="optionA">Option A</button>
+                            <button class="option-btn" id="optionA"></button>
                         </div>
                         <div class="col-md-12">
-                            <button class="option-btn" id="optionB">Option B</button>
+                            <button class="option-btn" id="optionB"></button>
                         </div>
                         <div class="col-md-12">
-                            <button class="option-btn" id="optionC">Option C</button>
+                            <button class="option-btn" id="optionC"></button>
                         </div>
                         <div class="col-md-12">
-                            <button class="option-btn" id="optionD">Option D</button>
+                            <button class="option-btn" id="optionD"></button>
                         </div>
                     </div>
                 </div>
@@ -281,7 +285,7 @@
             });
         </script>
         <script>
-            <% if (locals.error){%>alert("<%= locals.error%>");<%} else {%>
+
             var gameID = <%= locals.game.id %>+0;
             var ques = $("#question");
             var opt0 = $("#optionA");
