@@ -6,28 +6,86 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <style>
+            html, body {
+                height:100%;
+                user-select: none;
+                -webkit-user-select: none; /* Chrome/Safari */
+                -moz-user-select: none; /* Firefox */
+                -ms-user-select: none; /* IE10+ */
+
+            }
+
+            .container {
+                position: relative;
+            }
+
+            .jumbotron {
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: white;
+            }
+
+            .option-btn {
+                line-height: 40px;
+                width: 25em;
+                display:inline-block;
+                font-family:Arial, "Helvetica", sans-serif;
+                font-size:20px;
+                font-weight:bold;
+                color:#fff !important;
+                text-decoration:none;
+                text-align:left;
+                text-shadow:1px 1px 0px #07526e;
+                padding-top:6px;
+                position:relative;
+                cursor:pointer;
+                border: none;
+                background: #109bce;
+                background-image: linear-gradient(bottom, rgb(14,137,182) 0%, rgb(22,179,236) 100%);
+                border-radius: 5px;
+                box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #07526e, 0px 10px 5px #999;
+                margin: 0.25em;
+            }
+
+            .option-btn:hover{
+                top:3px;
+                box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #07526e, 0px 5px 3px #999;
+            }
+        </style>
         <script>
+            <% if (locals.error){%>alert("<%= locals.error%>");<%} else {%>
             $(document).ready(function () {
-                <% if (locals.error){%>alert("<%= locals.error%>"); return;<%}%>
-                var gameID = <%= locals.id %>+0;
+                var gameID = <%= locals.game.id %>+0;
                 var ques = $("#question");
                 var opt0 = $("#optionA");
                 var opt1 = $("#optionB");
                 var opt2 = $("#optionC");
                 var opt3 = $("#optionD");
-                ques.html("loading...");
+                var qno = 0;
+                var time = 0;
+                window.setInterval(function () {
+                    if (time > 0) {
+                        time--;
+                        $("#timer").html(time);
+                    }
+                }, 1000);
                 function getQuestion(answer) {
                     $.post('/play', {gameID: gameID, answer: answer}, function (data, status, xhr) {
                         if (status == "success") {
                             console.log(data);
-                            if (data.score != undefined) alert(data.score);
-                            ques.html(data.question);
-                            opt0.html(data.options[0]);
-                            opt1.html(data.options[1]);
-                            opt2.html(data.options[2]);
-                            opt3.html(data.options[3]);
+                            if (data.score != undefined) return alert(data.score);
+                            qno++;
+                            ques.html(qno+". "+data.question);
+                            opt0.html("A. "+data.options[0]);
+                            opt1.html("B. "+data.options[1]);
+                            opt2.html("C. "+data.options[2]);
+                            opt3.html("D. "+data.options[3]);
+                            time = 10-Math.round((Date.now()-data.time)/1000);
                         }
                     });
+
                 }
                 opt0.click(function () {
                     getQuestion(0);
@@ -42,16 +100,35 @@
                     getQuestion(3);
                 });
             });
+            <%}%>
         </script>
     </head>
     <body>
-        <h1>Game</h1>
-        <p id="question"></p>
-        <ol type="A">
-            <li id="optionA"></li>
-            <li id="optionB"></li>
-            <li id="optionC"></li>
-            <li id="optionD"></li>
-        </ol>
+        <div class="container" style="height: 100%">
+            <div class="row text-center" style="height: 40%">
+                <div class="col-md-12 jumbotron">
+                    <div id="qno"></div>
+                    <p id="question">
+                        Question | Question |Question |Question |Question |Question |Question |Question |Question |Question
+                    </p>
+                </div>
+            </div>
+            <div class="row text-center" style="height: 60%">
+                <div class="col-md-12">
+                    <button class="option-btn" id="optionA">Option A</button>
+                </div>
+                <div class="col-md-12">
+                    <button class="option-btn" id="optionB">Option B</button>
+                </div>
+                <div class="col-md-12">
+                    <button class="option-btn" id="optionC">Option C</button>
+                </div>
+                <div class="col-md-12">
+                    <button class="option-btn" id="optionD">Option D</button>
+                </div>
+                <p id="timer"></p>
+            </div>
+
+        </div>
     </body>
 </html>
