@@ -40,7 +40,7 @@ router.get('/play', ensureLoggedIn.ensureLoggedIn(), function (req, res) {
             console.log(err);
             return res.sendStatus(500);
         }
-        else res.render('game', {game: game});
+        else res.render('game', {game: game,name: user.displayName});
     });
 });
 
@@ -50,7 +50,7 @@ router.post('/play', ensureLoggedIn.ensureLoggedIn(), function (req, res) {
     var gameID = Number(req.body.gameID);
     if ((!gameID && gameID != 0) && (gameID < 0 || gameID >= user.games.length )) return res.sendStatus(404);
     var answer = Number(req.body.answer);
-    var tl = (user.games[gameID].questions.length > 1) && (Math.abs(user.games[gameID].time-t) > 10000);
+    var tl = (user.games[gameID].questions.length > 1) && (Math.abs(user.games[gameID].time-t) > 120000);
     if (tl || answer == 5) {
         return res.send({score: user.games[gameID].score});
     }

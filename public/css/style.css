@@ -209,14 +209,8 @@ svg {
 
 
 @charset "UTF-8";
-@import url(font-awesome.min.css);
+@import url(/css/font-awesome.min.css);
 @import url("http://fonts.googleapis.com/css?family=Lato:300,400");
-
-/*
-	Interphase by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
-*/
 
 /* Basic */
 	input, select, textarea {
