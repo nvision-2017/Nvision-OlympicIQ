@@ -25,7 +25,12 @@ router.get('/logout', function(req, res) {
 router.get('/', function (req, res) {
     if (req.user) {
         var user = req.user;
-        if (user.games.length > 10) return res.render('game', {error: "No more games can be played", name: req.user.displayName});
+        var l = user.games.length;
+        var d = 0;
+        for (var i=0; i<l; i++) {
+            if (user.games[i].questions.length != 0) d++;
+        }
+        if (d > 5) return res.render('game', {error: "No more games can be played", name: req.user.displayName});
         var game = {};
         game.id = user.games.length;
         game.questions = [];
