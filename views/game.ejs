@@ -101,7 +101,7 @@
         </script>
 
         <header>
-        <button class="btn btn-primary" onclick="logout()" style="float:right;margin:1em;">Logout</button>
+        <a href="/logout" class="btn btn-primary" style="float:right;margin:1em;">Logout</a>
                 <h1>
                 <a href="https://nvision.org.in" target="_blank"><img src="/images/nvision.png" height="100"></a>
                 &emsp;<b style="color:#fff">OLYMPIC IQ</b>&emsp;
@@ -305,9 +305,6 @@
             var qno = 0;
             var time = 120;
 
-            function logout() {
-                window.open('/logout','_self');
-            }
 
             function score(sc) {
                 $("#game").hide();
