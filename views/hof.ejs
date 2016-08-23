@@ -94,7 +94,7 @@
 <header>
     <h1>
         <a href="https://nvision.org.in" target="_blank"><img src="/images/nvision.png" height="100"></a>
-        &emsp;<b style="color:#fff">OLYMPIC IQ</b>&emsp;
+        &emsp;<a href="https://olympics.nvision.org.in/" target="_blank" style="color:#fff">OLYMPIC IQ</a>&emsp;
         <a href="https://www.facebook.com/litsociith" target="_blank"><img src="/images/litsoc.png" height="100" ></a>
     </h1>
 </header>
@@ -112,22 +112,12 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <% for (var i=0; i<games.length; i++) {%>
                     <tr>
-                        <td>asdf asd fasdsf 1</td>
-                        <td>8/8</td>
-                    </tr><tr>
-                        <td>2sdf asdf asdf</td>
-                        <td>8/8</td>
-                    </tr><tr>
-                        <td>3sd asd fsadf </td>
-                        <td>8/8</td>
-                    </tr><tr>
-                        <td>4sdf asdf asdf </td>
-                        <td>8/8</td>
-                    </tr><tr>
-                        <td>5s fasd fsadf asdf </td>
-                        <td>8/8</td>
+                        <td><%= games[i].user%></td>
+                        <td><%= games[i].score%>/8</td>
                     </tr>
+                    <%}%>
                     </tbody>
                 </table>
             </div>

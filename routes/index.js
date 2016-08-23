@@ -109,15 +109,21 @@ router.get('/halloffame', function (req, res) {
             var g = [];
             for (var i=0; i<users.length; i++) {
                 var user = users[i];
+                var high = 0;
+                var time = 0;
                 for (var j=0; j<user.games.length; j++) {
                     var game = user.games[j];
-                    if (game.questions.length != 0 && game.score >= 1) {
-                        g.push({
-                            name : user.displayName,
-                            score: game.score,
-                            time: game.questions[0].time
-                        });
+                    if (game.score > high) {
+                        high = game.score;
+                        if(game.questions && game.questions.length != 0 && game.questions[0]) time = game.questions[0].time;
                     }
+                }
+                if (high >= 6) {
+                    g.push({
+                        user: user.displayName,
+                        score: high,
+                        time: time
+                    });
                 }
             }
             g.sort(function (a, b) {
@@ -127,12 +133,12 @@ router.get('/halloffame', function (req, res) {
                 if (a.time < b.time) return -1;
                 return 0;
             });
-            //res.send(g);
+            console.log(g);
              res.render("hof", {games: g});
         }
     });
 });
-//
+
 // router.get('/qazwsxedcrfvtgbyhnujmikolp', function (req, res) {
 //     User.find({}, function (err, users) {
 //         if (err) return res.sendStatus(404);
