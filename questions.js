@@ -121,8 +121,8 @@ var q = JSON.parse(`[
   },
   {
   "question": "For the 2020 Summer Olympic Games, Japan is planning to spend over $6,000,000 to pull of something that never has been done before. What’s up, Japan?",
-  "options": ["Anime themed stadium", "*need a better option here*", "Man-made meteor shower", "Huge working mecha mascot"],
-  "answer": 2
+  "options": ["Anime themed stadium", "Man-made meteor shower", "Huge working mecha mascot"],
+  "answer": 1
   },
   {
   "question": "The first official Olympic mascot appeared in the 1972 Summer Olympics, Munich. Named a Waldi, it was a/an:",
