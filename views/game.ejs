@@ -125,7 +125,7 @@
                 <div id="main" class="container">
                     <div class="card">
                         <% if (locals.error) {%>
-                        <p style="color:#fff;font-size:20px">You have used all your 5 chances.</p>
+                        <p style="color:#fff;font-size:20px">Sorry, You have used all your 5 chances.</p>
                         <% } else {%>
                         <div style="color:#fff;font-size:20px">
                             Rules:<br>
@@ -319,7 +319,7 @@
                 $(".game").hide();
                 $("#score").show();
                 $("#scorec").html(sc);
-                fbQuote = displayName+"'s Olympic IQ score is "+sc+"/8"
+                fbQuote = "I scored "+sc+"/8, see what you can score!";
             }
             function startGame() {
                 $("#main").hide();
