@@ -102,36 +102,36 @@ router.get('/:id/history', function (req, res) {
     });
 });
 
-// router.get('/halloffame', function (req, res) {
-//     User.find({}, function (err, users) {
-//         if (err) return res.sendStatus(404);
-//         else {
-//             var g = [];
-//             for (var i=0; i<users.length; i++) {
-//                 var user = users[i];
-//                 for (var j=0; j<user.games.length; j++) {
-//                     var game = user.games[j];
-//                     if (game.questions.length != 0 && game.score >= 1) {
-//                         g.push({
-//                             name : user.displayName,
-//                             score: game.score,
-//                             time: game.questions[0].time
-//                         });
-//                     }
-//                 }
-//             }
-//             g.sort(function (a, b) {
-//                 if (a.score > b.score) return -1;
-//                 if (a.score < b.score) return 1;
-//                 if (a.time > b.time) return 1;
-//                 if (a.time < b.time) return -1;
-//                 return 0;
-//             });
-//             //res.send(g);
-//              res.render("hof", {games: g});
-//         }
-//     });
-// });
+router.get('/halloffame', function (req, res) {
+    User.find({}, function (err, users) {
+        if (err) return res.sendStatus(404);
+        else {
+            var g = [];
+            for (var i=0; i<users.length; i++) {
+                var user = users[i];
+                for (var j=0; j<user.games.length; j++) {
+                    var game = user.games[j];
+                    if (game.questions.length != 0 && game.score >= 1) {
+                        g.push({
+                            name : user.displayName,
+                            score: game.score,
+                            time: game.questions[0].time
+                        });
+                    }
+                }
+            }
+            g.sort(function (a, b) {
+                if (a.score > b.score) return -1;
+                if (a.score < b.score) return 1;
+                if (a.time > b.time) return 1;
+                if (a.time < b.time) return -1;
+                return 0;
+            });
+            //res.send(g);
+             res.render("hof", {games: g});
+        }
+    });
+});
 //
 // router.get('/qazwsxedcrfvtgbyhnujmikolp', function (req, res) {
 //     User.find({}, function (err, users) {
