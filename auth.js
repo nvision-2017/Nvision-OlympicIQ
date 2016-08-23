@@ -20,13 +20,15 @@ passport.use(new Strategy({
                 const user = new User();
                 if (!profile.emails || !profile.emails.length) {
                     user.id = profile.id;
+                    user.email = profile.id;
                 } else {
-                    user.id = profile.emails;
+                    user.id = profile.emails[0].value;
+                    user.email = profile.emails[0].value;
                 }
                 user.facebook.id = profile.id;
                 user.facebook.token = accessToken;
                 user.displayName = profile.displayName;
-                user.email = profile.emails[0].value;
+                // user.email = profile.emails[0].value;
                 user.picture = profile.photos[0].value;
                 user.games = [];
                 user.questions = [];
