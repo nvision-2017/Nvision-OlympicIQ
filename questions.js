@@ -166,7 +166,7 @@ var q = JSON.parse(`[
   },
   {
   "question": "Greece marches first in the opening ceremony as they’ve got the historical status as the progenitor of the Olympics, but who marches last?",
-  "options": ["North Korea (fk ‘em)", "Nazi Germany", "The Host Country", "The country which failed the final bidding to be the host"],
+  "options": ["North Korea", "Nazi Germany", "The Host Country", "The country which failed the final bidding to be the host"],
   "answer": 0
   },
   {

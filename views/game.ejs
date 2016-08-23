@@ -79,6 +79,10 @@
 
             }
 
+            .container {
+                z-index: 100;
+            }
+
         </style>
     </head>
     <body>
@@ -332,7 +336,8 @@
             function getQuestion(answer) {
                 $.post('/play', {gameID: gameID, answer: answer}, function (data, status, xhr) {
                     if (status == "success") {
-                        console.log(data);
+                        enablebtn();
+//                        console.log(data);
                         if (data.score != undefined) return score(data.score);
                         qno++;
                         ques.html("<b>"+qno+".</b> "+data.question);
@@ -360,16 +365,37 @@
                     }
                 });
             }
+
+            function disablebtn() {
+//                console.log(0);
+                opt0.prop("disabled", true);
+                opt1.prop("disabled", true);
+                opt2.prop("disabled", true);
+                opt3.prop("disabled", true);
+            }
+
+            function enablebtn() {
+//                console.log(1);
+                opt0.prop("disabled", false);
+                opt1.prop("disabled", false);
+                opt2.prop("disabled", false);
+                opt3.prop("disabled", false);
+            }
+
             opt0.click(function () {
+                disablebtn();
                 getQuestion(0);
             });
             opt1.click(function () {
+                disablebtn();
                 getQuestion(1);
             });
             opt2.click(function () {
+                disablebtn();
                 getQuestion(2);
             });
             opt3.click(function () {
+                disablebtn();
                 getQuestion(3);
             });
             <%}%>
