@@ -6,7 +6,7 @@ const User = require('./models/user');
 passport.use(new Strategy({
     clientID: config.facebook.clientID,
     clientSecret: config.facebook.clientSecret,
-    callbackURL: "https://olympics.nvision.org.in/auth/facebook/callback",
+    callbackURL: "/auth/facebook/callback",
     profileFields: ['id', 'displayName', 'name', 'email', 'picture']
 }, function (accessToken, refreshToken, profile, cb) {
     process.nextTick(function () {
@@ -16,8 +16,13 @@ passport.use(new Strategy({
             if (err) return cb(err);
             else if (user) return cb(null, user);
             else {
+                console.log(profile);
                 const user = new User();
-                user.id = profile.emails[0].value;
+                if (!profile.emails || !profile.emails.length) {
+                    user.id = profile.id;
+                } else {
+                    user.id = profile.emails;
+                }
                 user.facebook.id = profile.id;
                 user.facebook.token = accessToken;
                 user.displayName = profile.displayName;
