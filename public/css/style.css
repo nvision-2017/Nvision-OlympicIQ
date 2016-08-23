@@ -1056,7 +1056,7 @@ svg {
 
 /* Header */
 
-	body.landing #header,body.landing #header2 {
+	body.landing #header1,body.landing #header2 {
 		background-color: transparent;
 		left: 0;
 		position: absolute;
@@ -1069,7 +1069,7 @@ svg {
 		top: 0;
 	}
 
-	#header,#header2 {
+	#header1,#header2 {
 		background-color: #202222;
 		color: #ffffff;
 		cursor: default;
@@ -1079,7 +1079,7 @@ svg {
 		z-index: 10000;
 	}
 
-		#header h1,#header2 h1 {
+		#header1 h1,#header2 h1 {
 			color: #ffffff;
 			height: inherit;
 			line-height: inherit;
@@ -1089,14 +1089,14 @@ svg {
 			top: 0;
 		}
 
-		#header h1 {
+		#header1 h1 {
 			left: 1.5em;
 		}
 		#header2 h1 {
 			right: 2.5em;
 		}
 
-			#header h1 a,#header2 h1 a {
+			#header1 h1 a,#header2 h1 a {
 				font-size: 1.25em;
 			}
 

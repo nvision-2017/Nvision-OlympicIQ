@@ -64,3 +64,8 @@
 			padding-left: 0;
 			display: block;
 		}
+
+		#banner {
+			transform: translateY(100px);
+		}
+		
