@@ -5,7 +5,7 @@ const ensureLoggedIn = require("connect-ensure-login");
 const User = require('../models/user');
 
 router.get('/login', function (req, res) {
-    res.render('login');
+    res.redirect('/');
 });
 
 router.get('/auth/facebook', auth.authenticate('facebook', {scope: ['email', 'public_profile']}));
@@ -22,26 +22,29 @@ router.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
-router.get('/', ensureLoggedIn.ensureLoggedIn(), function (req, res) {
-    res.redirect('/play');
+router.get('/', function (req, res) {
+    if (req.user) {
+        var user = req.user;
+        if (user.games.length > 5) return res.render('game', {error: "No more games can be played", name: req.user.displayName});
+        var game = {};
+        game.id = user.games.length;
+        game.questions = [];
+        game.time = Date.now();
+        game.score = 0;
+        user.games.push(game);
+        user.save(function (err, user) {
+            if (err) {
+                console.log(err);
+                return res.sendStatus(500);
+            }
+            else res.render('game', {game: game,name: req.user.displayName});
+        });
+    }
+    else res.render('login');
 });
 
-router.get('/play', ensureLoggedIn.ensureLoggedIn(), function (req, res) {
-    var user = req.user;
-    // if (user.games.length > 4) return res.render('game', {error: "No more games can be played"});
-    var game = {};
-    game.id = user.games.length;
-    game.questions = [];
-    game.time = Date.now();
-    game.score = 0;
-    user.games.push(game);
-    user.save(function (err, user) {
-        if (err) {
-            console.log(err);
-            return res.sendStatus(500);
-        }
-        else res.render('game', {game: game,name: user.displayName});
-    });
+router.get('/play', function (req, res) {
+    res.redirect('/');
 });
 
 router.post('/play', ensureLoggedIn.ensureLoggedIn(), function (req, res) {

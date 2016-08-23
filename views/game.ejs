@@ -12,9 +12,9 @@
         <meta name="robots" content="index, follow">
         <meta property="og:site_name" content="&eta;vision">
         <meta property="og:title" content="Olympic IQ | &eta;vision 2016">
-        <meta property="og:type" content="techno-management_fest:nvision">
-        <meta property="og:image" content="/imges/logo.png">
-        <meta property="og:url" content="olympics.nvision.org.in">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="https://olympics.nvision.org.in/logo.jpg">
+        <meta property="og:url" content="https://olympics.nvision.org.in">
         <meta property="og:description" content="Olympic Quiz organised by &eta;vision 2016 IITH">
         <meta property="game:points" content="1000" />
 
@@ -24,15 +24,14 @@
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <style>
-        body {
-            background: url("..//images/banner.jpg");
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-color: #0F142A;
-            overflow-x: hidden;
-        }
+
+            html {
+                overflow-y: hidden;
+            }
+
             html, body {
+                background-color: #0F142A;
+                overflow-x: hidden;
                 height:100%;
                 user-select: none;
                 -webkit-user-select: none;
@@ -80,6 +79,14 @@
 
             }
 
+            .container {
+                z-index: 100;
+            }
+
+            svg {
+                z-index: -1;
+            }
+
         </style>
     </head>
     <body>
@@ -102,7 +109,7 @@
         </script>
 
         <header>
-        <button class="btn btn-primary" onclick="logout()" style="float:right;margin:1em;">Logout</button>
+            <a href="/logout" class="btn btn-primary" style="float:right;margin:1em;z-index: 100">Logout</a>
                 <h1>
                 <a href="https://nvision.org.in" target="_blank"><img src="/images/nvision.png" height="100"></a>
                 &emsp;<b style="color:#fff">OLYMPIC IQ</b>&emsp;
@@ -110,20 +117,25 @@
                 </h1>
             </header>
                         <div class="col-md-12 game" style="display:none">
-                            <button style="float:right;z-index:1000" class="skip-btn btn btn-warning" onclick="getQuestion(4)"><b>Skip</b>&emsp;<span class="glyphicon glyphicon-hand-right"></span></button>
+                            <button style="float:right;z-index:100" class="skip-btn btn btn-warning" onclick="getQuestion(4)"><b>Skip</b>&emsp;<span class="glyphicon glyphicon-hand-right"></span></button>
                         </div>
 
         <div class="table">
             <div class="table-cell">
                 <div id="main" class="container">
                     <div class="card">
+                        <% if (locals.error) {%>
+                        <p style="color:#fff;font-size:20px">Sorry, You have used all your 5 chances.</p>
+                        <% } else {%>
                         <div style="color:#fff;font-size:20px">
                             Rules:<br>
                             1. You have 120 seconds to answer 8 questions <br>
                             2. Once clicked on 'skip', you cant go back to that question<br>
                             3. Refresh or Logout in the middle of the game will be considered as 'game over'
                         </div>
-                        <button class="start-btn" onclick="startGame()">Start Quiz</button>
+
+                        <button class="start-btn" style="z-index: 100" onclick="startGame()">Start Quiz</button>
+                        <% }%>
                     </div>
                     <svg class="svg-1" width="147px" height="148px" viewBox="0 0 147 148" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <defs>
@@ -199,18 +211,18 @@
                             <p id="question" style="text-align:left"></p>
                         </div>
                     </div>
-                    <div class="row" style="height: 60%">
+                    <div class="row" style="height: 60%;">
                         <div class="col-md-12">
-                            <button class="option-btn" id="optionA">Option A</button>
+                            <button class="option-btn" id="optionA"></button>
                         </div>
                         <div class="col-md-12">
-                            <button class="option-btn" id="optionB">Option B</button>
+                            <button class="option-btn" id="optionB"></button>
                         </div>
                         <div class="col-md-12">
-                            <button class="option-btn" id="optionC">Option C</button>
+                            <button class="option-btn" id="optionC"></button>
                         </div>
                         <div class="col-md-12">
-                            <button class="option-btn" id="optionD">Option D</button>
+                            <button class="option-btn" id="optionD"></button>
                         </div>
                     </div>
                 </div>
@@ -282,7 +294,7 @@
                 FB.ui({
                     method: 'share',
                     display: 'popup',
-                    href: 'https://olympics.nvision.org.in/',
+                    href: 'https://olympics.nvision.org.in',
                     hashtag: '#nvisionOlympicIQ',
                     quote: fbQuote
                 }, function(response){
@@ -291,7 +303,7 @@
             });
         </script>
         <script>
-            <% if (locals.error){%>alert("<%= locals.error%>");<%} else {%>
+            <% if (locals.error){%>// alert("<%= locals.error%>");<%} else {%>
             var gameID = <%= locals.game.id %>+0;
             var ques = $("#question");
             var opt0 = $("#optionA");
@@ -301,16 +313,13 @@
             var qno = 0;
             var time = 120;
 
-            function logout() {
-                window.open('/logout','_self');
-            }
 
             function score(sc) {
                 $("#game").hide();
                 $(".game").hide();
                 $("#score").show();
                 $("#scorec").html(sc);
-                fbQuote = displayName+"'s Olympic IQ score is "+sc+"/8"
+                fbQuote = "I scored "+sc+"/8, see what you can score!";
             }
             function startGame() {
                 $("#main").hide();
@@ -331,7 +340,8 @@
             function getQuestion(answer) {
                 $.post('/play', {gameID: gameID, answer: answer}, function (data, status, xhr) {
                     if (status == "success") {
-                        console.log(data);
+                        enablebtn();
+//                        console.log(data);
                         if (data.score != undefined) return score(data.score);
                         qno++;
                         ques.html("<b>"+qno+".</b> "+data.question);
@@ -359,16 +369,37 @@
                     }
                 });
             }
+
+            function disablebtn() {
+//                console.log(0);
+                opt0.prop("disabled", true);
+                opt1.prop("disabled", true);
+                opt2.prop("disabled", true);
+                opt3.prop("disabled", true);
+            }
+
+            function enablebtn() {
+//                console.log(1);
+                opt0.prop("disabled", false);
+                opt1.prop("disabled", false);
+                opt2.prop("disabled", false);
+                opt3.prop("disabled", false);
+            }
+
             opt0.click(function () {
+                disablebtn();
                 getQuestion(0);
             });
             opt1.click(function () {
+                disablebtn();
                 getQuestion(1);
             });
             opt2.click(function () {
+                disablebtn();
                 getQuestion(2);
             });
             opt3.click(function () {
+                disablebtn();
                 getQuestion(3);
             });
             <%}%>
