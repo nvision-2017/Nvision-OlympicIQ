@@ -30,7 +30,7 @@ router.get('/', function (req, res) {
         for (var i=0; i<l; i++) {
             if (user.games[i].questions.length != 0) d++;
         }
-        if (d > 5) return res.render('game', {error: "No more games can be played", name: req.user.displayName});
+        if (d > 5) return res.render('game', {id: req.user.facebook.id, error: "No more games can be played", name: req.user.displayName});
         var game = {};
         game.id = user.games.length;
         game.questions = [];
@@ -42,7 +42,7 @@ router.get('/', function (req, res) {
                 console.log(err);
                 return res.sendStatus(500);
             }
-            else res.render('game', {game: game,name: req.user.displayName});
+            else res.render('game', {id: req.user.facebook.id, game: game,name: req.user.displayName});
         });
     }
     else res.render('login');
@@ -89,6 +89,81 @@ router.post('/play', ensureLoggedIn.ensureLoggedIn(), function (req, res) {
         }
     });
 });
+
+router.get('/:id/history', function (req, res) {
+    var id = req.params.id;
+    User.findOne({"facebook.id": id}, function (err, user) {
+        if (err) return res.sendStatus(404);
+        else if (!user) return res.sendStatus(404);
+        else {
+            // console.log(user.games);
+            res.render("history", {id: id,games: user.games});
+        }
+    });
+});
+
+// router.get('/halloffame', function (req, res) {
+//     User.find({}, function (err, users) {
+//         if (err) return res.sendStatus(404);
+//         else {
+//             var g = [];
+//             for (var i=0; i<users.length; i++) {
+//                 var user = users[i];
+//                 for (var j=0; j<user.games.length; j++) {
+//                     var game = user.games[j];
+//                     if (game.questions.length != 0 && game.score >= 1) {
+//                         g.push({
+//                             name : user.displayName,
+//                             score: game.score,
+//                             time: game.questions[0].time
+//                         });
+//                     }
+//                 }
+//             }
+//             g.sort(function (a, b) {
+//                 if (a.score > b.score) return -1;
+//                 if (a.score < b.score) return 1;
+//                 if (a.time > b.time) return 1;
+//                 if (a.time < b.time) return -1;
+//                 return 0;
+//             });
+//             //res.send(g);
+//              res.render("hof", {games: g});
+//         }
+//     });
+// });
+//
+// router.get('/qazwsxedcrfvtgbyhnujmikolp', function (req, res) {
+//     User.find({}, function (err, users) {
+//         if (err) return res.sendStatus(404);
+//         else {
+//             var g = [];
+//             for (var i=0; i<users.length; i++) {
+//                 var user = users[i];
+//                 console.log(user);
+//                 var u = {
+//                     id : user.id,
+//                     name: user.displayName,
+//                     games: []
+//                 };
+//                 for (var j=0; j<user.games.length; j++) {
+//                     var game = user.games[j];
+//                     if (game.questions.length != 0) {
+//                         u.games.push({
+//                             id : game.id,
+//                             score: game.score,
+//                             time: game.time
+//                         });
+//                     }
+//                 }
+//                 g.push(u);
+//             }
+//             // res.render("hof", {games: g});
+//             console.log(g);
+//             res.send(g);
+//         }
+//     });
+// });
 
 router.post('/score', ensureLoggedIn.ensureLoggedIn(), function (req, res) {
     var gameID = Number(req.body.gameID);
