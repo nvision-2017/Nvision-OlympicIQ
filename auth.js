@@ -1,7 +1,7 @@
 const passport = require("passport");
 const Strategy = require("passport-facebook").Strategy;
 const config = require("./config");
-const User = require('./models/user');
+const User = require('./models/us;er');
 
 passport.use(new Strategy({
     clientID: config.facebook.clientID,
@@ -10,8 +10,15 @@ passport.use(new Strategy({
     profileFields: ['id', 'displayName', 'name', 'email', 'picture']
 }, function (accessToken, refreshToken, profile, cb) {
     process.nextTick(function () {
+        var email;
+        if (!profile.emails || !profile.emails.length) {
+            email = profile.id;
+        } else {
+            email = profile.emails[0].value;
+        }
+
         User.findOne({
-            email: profile.emails[0].value
+            email: email
         }, function (err, user) {
             if (err) return cb(err);
             else if (user) return cb(null, user);
