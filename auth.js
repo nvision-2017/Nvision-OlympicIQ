@@ -31,7 +31,7 @@ passport.use(new Strategy({
                 for (var i=0; i<Questions.length; i++) {
                     var r = Math.floor(Math.random()*Questions.length);
                     var temp = user.questions[r];
-                    user.questions[r] = user.questions[r];
+                    user.questions[r] = user.questions[i];
                     user.questions[i] = temp;
                 }
                 user.save(function (err, user) {
