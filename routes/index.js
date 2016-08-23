@@ -101,4 +101,8 @@ router.post('/score', ensureLoggedIn.ensureLoggedIn(), function (req, res) {
     });
 });
 
+router.get('/h',function(req,res){
+    res.render('history');
+});
+
 module.exports = router;
