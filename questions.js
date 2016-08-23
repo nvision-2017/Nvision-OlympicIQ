@@ -280,11 +280,6 @@ var q = JSON.parse(`[
   "answer": 1
   },
   {
-  "question": "What do they represent?",
-  "options": ["Brazil’s Sand and Surf", "Brazil’s abundant Sun and Water", "Brazilian wildlife and plant life", "Mangoes, Guavas and Berries"],
-  "answer": 2
-  },
-  {
   "question": "Which of the following has never been the name of a mascot in the Olympics?",
   "options": ["Izzy", "Cobi", "Quatchi", "Sherman"],
   "answer": 3
