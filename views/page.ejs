@@ -1,0 +1,31 @@
+<html>
+    <body>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Scores</th>
+            <th>Highest</th>
+            <th>Time</th>
+        </tr>
+        <% for (var i=0; i<users.length; i++) {%>
+        <% var user = users[i]; %>
+        <tr>
+            <td><%= user.displayName%></td>
+            <td>
+            <% var high = 0; var id=-1;%>
+            <% for (var j=0; j<user.games.length; j++) {%>
+            <% if (user.games[j].questions.length != 0) {%>
+                <%= user.games[j].score%>,
+            <% if (high < user.games[j].score) {%>
+                <% high = user.games[j].score; id = j;%>
+            <%}%>
+            <%}%>
+            <%}%>
+            </td>
+            <td><%= high%></td>
+            <td><% if(id != -1) {%><%= -user.games[id].questions[0].time + user.games[id].questions[user.games[id].questions.length-1].time  %><%}%></td>
+        </tr>
+        <%}%>
+    </table>
+    </body>
+</html>

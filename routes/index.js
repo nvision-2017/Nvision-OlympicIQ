@@ -109,13 +109,15 @@ router.get('/halloffame', function (req, res) {
             var g = [];
             for (var i=0; i<users.length; i++) {
                 var user = users[i];
-                var high = 0;
+                var high = 1;
                 var time = 0;
                 for (var j=0; j<user.games.length; j++) {
                     var game = user.games[j];
                     if (game.score > high) {
                         high = game.score;
-                        if(game.questions && game.questions.length != 0 && game.questions[0]) time = game.questions[0].time;
+                        if(game.questions && game.questions.length != 0 && game.questions[0]) {
+                            time = -game.questions[0].time + game.questions[game.questions.length-1].time
+                        }
                     }
                 }
                 if (high >= 6) {
@@ -139,37 +141,14 @@ router.get('/halloffame', function (req, res) {
     });
 });
 
-// router.get('/qazwsxedcrfvtgbyhnujmikolp', function (req, res) {
-//     User.find({}, function (err, users) {
-//         if (err) return res.sendStatus(404);
-//         else {
-//             var g = [];
-//             for (var i=0; i<users.length; i++) {
-//                 var user = users[i];
-//                 console.log(user);
-//                 var u = {
-//                     id : user.id,
-//                     name: user.displayName,
-//                     games: []
-//                 };
-//                 for (var j=0; j<user.games.length; j++) {
-//                     var game = user.games[j];
-//                     if (game.questions.length != 0) {
-//                         u.games.push({
-//                             id : game.id,
-//                             score: game.score,
-//                             time: game.time
-//                         });
-//                     }
-//                 }
-//                 g.push(u);
-//             }
-//             // res.render("hof", {games: g});
-//             console.log(g);
-//             res.send(g);
-//         }
-//     });
-// });
+router.get('/qazwsxedcrfvtgbyhnujmikolp', function (req, res) {
+    User.find({}, function (err, users) {
+        if (err) return res.sendStatus(404);
+        else {
+            res.render('page', {users: users});
+        }
+    });
+});
 
 router.post('/score', ensureLoggedIn.ensureLoggedIn(), function (req, res) {
     var gameID = Number(req.body.gameID);
