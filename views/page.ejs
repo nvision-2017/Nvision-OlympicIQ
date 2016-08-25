@@ -2,6 +2,7 @@
     <body>
     <table border="1">
         <tr>
+            <th>Sl. No.</th>
             <th>Name</th>
             <th>Scores</th>
             <th>Highest</th>
@@ -10,6 +11,7 @@
         <% for (var i=0; i<users.length; i++) {%>
         <% var user = users[i]; %>
         <tr>
+            <td><%= i+1 %></td>
             <td><%= user.displayName%></td>
             <td>
             <% var high = 0; var id=-1;%>
